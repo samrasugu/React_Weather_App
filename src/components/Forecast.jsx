@@ -6,7 +6,7 @@ const Forecast = ({title}) => {
       
       <div className='flex items-center justify-start mt-6'>
         <p className='text-white font-medium uppercase'>
-          Hourly Forecast
+          {title}
         </p>
       </div>
       <hr className='my-2'/>
