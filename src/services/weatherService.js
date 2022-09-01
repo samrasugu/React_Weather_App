@@ -51,7 +51,7 @@ const getFormattedWeatherData = async (searchParams) => {
     const formattedCurrentWeather = await getWeatherData
     ('weather', searchParams).then(formatCurrentWeather);
 
-    const {lat, lon} = formatCurrentWeather;
+    const {lat, lon} = formattedCurrentWeather;
 
     const formattedForecastWeather = await getWeatherData('onecall', {
         lat, lon, exclude: 'current,minutely,alerts', units: searchParams.units
@@ -60,7 +60,10 @@ const getFormattedWeatherData = async (searchParams) => {
     return {...formattedCurrentWeather, ...formattedForecastWeather};
 }
 
-const formatToLocalTime = (secs, zone, format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a") => DateTime.fromSeconds(secs).
-setZone(zone).toFormat(format);
+const formatToLocalTime = (
+    secs, 
+    zone, 
+    format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
+) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
 export default getFormattedWeatherData
